@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Flash Loader</title>
+<script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+<style>
+    body { font-family: sans-serif; padding: 20px; }
+    #flash-container { margin-top: 20px; border: 1px solid #ccc; width: 800px; height: 600px; }
+    select, button { padding: 5px; margin-top: 10px; }
+</style>
+</head>
+<body>
+
+<h1>Escolha um jogo Flash</h1>
+
+<select id="swf-list">
+    <option value="Flash/AngryBirdsOnline.swf">Angry Birds Online</option>
+</select>
+<br>
+<button id="play-btn">Play</button>
+
+<div id="flash-container"></div>
+
+<script>
+    const ruffle = window.RufflePlayer.newest();
+    const container = document.getElementById("flash-container");
+    const player = ruffle.createPlayer();
+    container.appendChild(player);
+
+    const swfList = document.getElementById("swf-list");
+    const playBtn = document.getElementById("play-btn");
+
+    playBtn.addEventListener("click", () => {
+        const selectedSWF = swfList.value;
+        player.load(selectedSWF);
+    });
+</script>
+
+</body>
+</html>
